@@ -31,4 +31,6 @@ logs/
 *.tar
 *.zip
 *.gz
+
+*/settings.py
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
