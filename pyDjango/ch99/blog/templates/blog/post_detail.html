@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post_detail</title>
+</head>
+<body>
+    <h2>{{ object.title }}</h2>
+    <p>
+        {% if object.get_previous %} <!-- get_previous 함수는 modify_dt 칼럼 기준으로 이전 객체를 반환. 즉, 변경 날짜가 현재보다 더 최신 객체가 있는지 확인.-->
+        <a href="{{ object.get_previous.get_absolute_url }}" title="View previous post"> <!-- object.get_previous.get_absolute_url 함수는 이전 객체를 지칭하는 url패턴을 반환-->
+            {{ object.get_previous }}
+        </a>
+        {% endif %}
+
+        {% if object.get_next %}
+        | <a href="{{ object.get_next.get_absolute_url }}" title="View next post">
+          {{ object.get_next }}
+        </a>
+        {% endif %}
+    </p>
+
+    <p>{{ object.modify_dt|date:"j F Y" }}</p> <!-- 장고 템플릿 필터 date, time 포맷문자 -->
+    <br>
+
+    <div>
+        {{ object.content|linebreaks }}
+    </div>
+</body>
+</html>
