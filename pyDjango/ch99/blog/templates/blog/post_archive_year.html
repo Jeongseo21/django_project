@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>post_ahrchive_year</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}post_archive.html{% endblock %}
+
+{% block content %}
     <h1>Post Archives for {{ year|date:"Y" }}</h1> <!-- year컨텍스트 변수는 해당 연도에 대한 datetime.date타입의 객체-->
 
     <ul>
@@ -24,7 +21,4 @@
             {% endfor %}
         </ul>
     </div>
-
-
-</body>
-</html>
+{% endblock %}

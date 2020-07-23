@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>post_all</title>
-</head>
-<body>
-    <h1>Blog List</h1>
+{% extends "base.html" %}
+
+{% block title %} post_all.html {% endblock %}
+
+{% block content %}
+<h1>Blog List</h1>
     <br>
 
     {% for post in posts %} <!-- posts객체는 PostLV 클래스 뷰에서 넘겨주는 컨택스트 변수로서, Post 객체 리스트가 담겨 있음. posts 대신에 object_list 컨택스트 변수를 사용해도 됨.-->
@@ -27,8 +24,7 @@
         
             {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
-            {% endif %}    
+            {% endif %}
         </span>
     </div>
-</body>
-</html>
+{% endblock %}

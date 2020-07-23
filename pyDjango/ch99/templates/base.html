@@ -35,7 +35,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">han jeongseo-Django Web Project</span>
+        <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">Jeongseo-Django Web Project</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -48,13 +48,15 @@
                 <li class="nav-item mx-1 btn btn-primary">
                     <a class="nav-link text-white" href="{% url 'bookmark:index' %}">Bookmark</a></li>
                 <li class="nav-item mx-1 btn btn-primary">
+                    <a class="nav-link text-white" href="{% url 'blog:index' %}">Blog</a></li>
+                <li class="nav-item mx-1 btn btn-primary">
                     <a class="nav-link text-white" href="">Photo</a></li>
                 <li class="nav-item dropdown mx-1 btn btn-primary">
                     <a class="nav-link dropdown-toggle text-white" href="#"
                         data-toggle="dropdown">Util</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
-                        <a class="dropdown-item" href="{% url 'blog:post_archive'">Archive</a>
+                        <a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a>
                         <a class="dropdown-item" href="">Search</a>
                     </div>
                 </li>
@@ -69,7 +71,7 @@
         {% block content %}{% endblock %}
     </div>
 
-    
+
     {% block footer %}{% endblock %}
 
 </body>

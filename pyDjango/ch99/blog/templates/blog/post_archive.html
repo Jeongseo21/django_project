@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>post_archive</title>
-</head>
-<body>
-    <h1>Post Archives until {% now "N d, Y" %}</h1>
+{% extends "base.html" %}
+
+{% block title %}post_archive.html{% endblock %}
+
+{% block content %}
+<h1>Post Archives until {% now "N d, Y" %}</h1>
     <ul>
         {% for date in date_list %}
         <li style="display: inline;">
-            <a href = "{% url 'blog:post_year_archive' date|date:'Y' %}">Year-{{ date|date:'Y' }}</a></li>
+             <a href = "{% url 'blog:post_year_archive' date|date:'Y' %}">Year-{{ date|date:'Y' }}</a></li>
         {% endfor %}
     </ul>
     <br>
@@ -24,6 +21,4 @@
         </ul>
     </div>
 
-
-</body>
-</html>
+{% endblock %}
