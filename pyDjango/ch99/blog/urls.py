@@ -20,7 +20,7 @@ urlpatterns = [
     #/blog/archive/today/
     path('archive/today/', views.PostTAV.as_view(), name='post_today_archive'),
     #/blog/tag/
-    path('')
-    #/blog/tag/tagname/
-    path('')
+    # path('')
+    # #/blog/tag/tagname/
+    # path('')
 ]
