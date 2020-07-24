@@ -19,4 +19,8 @@ urlpatterns = [
     path('archive/<int:year>/<str:month>/<int:day>/', views.PostDAV.as_view(), name='post_day_archive'),
     #/blog/archive/today/
     path('archive/today/', views.PostTAV.as_view(), name='post_today_archive'),
+    #/blog/tag/
+    path('')
+    #/blog/tag/tagname/
+    path('')
 ]

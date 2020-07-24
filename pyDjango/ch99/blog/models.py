@@ -8,6 +8,7 @@ class Post(models.Model):
     content = models.TextField('CONTENT')
     create_dt = models.DateTimeField('CREATE DATE', auto_now_add=True)
     modify_dt = models.DateTimeField('MODIFY DATE', auto_now=True)
+    tags = models.
 
     class Meta:
         verbose_name = 'post' #테이블 단수 별칭
