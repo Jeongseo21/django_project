@@ -20,7 +20,7 @@ urlpatterns = [
     #/blog/archive/today/
     path('archive/today/', views.PostTAV.as_view(), name='post_today_archive'),
     #/blog/tag/
-    # path('')
+    path('tag/', views.TagCloudTV.as_view(), name='tag_cloud'),#TemplateView를 상속받아 정의
     # #/blog/tag/tagname/
-    # path('')
+    path('tag/<str:tag>/', views.TaggedObjectLV.as_view(), name='tagged_object_list'),#ListView를 상속받아 정의
 ]
