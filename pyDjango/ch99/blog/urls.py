@@ -21,6 +21,8 @@ urlpatterns = [
     path('archive/today/', views.PostTAV.as_view(), name='post_today_archive'),
     #/blog/tag/
     path('tag/', views.TagCloudTV.as_view(), name='tag_cloud'),#TemplateView를 상속받아 정의
-    # #/blog/tag/tagname/
+    #/blog/tag/tagname/
     path('tag/<str:tag>/', views.TaggedObjectLV.as_view(), name='tagged_object_list'),#ListView를 상속받아 정의
+    #/blog/search/
+    path('search/', views.SearchFormView.as_view(), name='search'),
 ]

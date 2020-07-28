@@ -1,10 +1,17 @@
 #클래스형 제네릭 뷰 임포트
-from django.views.generic import ListView, DetailView,TemplateView
+from django.views.generic import ListView, DetailView,TemplateView, FormView
 from django.views.generic.dates import ArchiveIndexView, YearArchiveView, MonthArchiveView
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
+from django.conf import settings
 
 #테이블 조회를 위해 post모델 클래스를임포트
 from blog.models import Post
+
+#검색 기능을 위해 forms에 만들어둔 form추가, Q클래스 임포트
+from blog.forms import PostSearchForm
+from django.db.models import Q
+from django.shortcuts import render
+
 
 # ListView
 class PostLV(ListView): 
@@ -20,6 +27,16 @@ class PostDV(DetailView):
     # 테이블에서 특정 객체를 조회하기 위한 키는 기본 키 대신 slug속성을 사용하고 있음. 
     # 이 slug파라미터는 URLconf에서 추출해 뷰로 넘겨줌.
     model = Post
+
+    #템플릿에 넘겨줄 변수를 정의함.
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}"
+        context['disqus_id'] = f"post-{self.object.id}-{self.object.slug}" #고유한 id를 만들어주기 위함. 
+        context['disqus_url'] = f"{settings.DISQUS_MY_DOMAIN}{self.object.get_absolute_url()}" #ex)http://127.0.0.1:8000/blog/post/99
+        context['disqus_title'] = f"{self.object.slug}"
+        return context
+
 
 # ArchiveView
 class PostAV(ArchiveIndexView):
@@ -57,6 +74,23 @@ class TaggedObjectLV(ListView):
         context = super().get_context_data(**kwargs)
         context['tagname'] = self.kwargs['tag']
         return context
+
+#FormView : GET 요청인 경우 폼을 화면에 보여줌. POST 요청의 경우 데이터의 유효성 검사를 한 후, 데이터가 유효하면 form_valid()함수를 실행한 후 리다이렉트 시킴.
+#(하지만, 여기에서는 HttpResponse객체를 반환)
+class SearchFormView(FormView):
+    form_class = PostSearchForm
+    template_name = 'blog/post_search.html'
+
+    def form_valid(self, form):
+        searchWord = form.cleaned_data['search_word']
+        post_list = Post.objects.filter(Q(title__icontains=searchWord) | Q(description__icontains=searchWord) | Q(content__icontains=searchWord)).distinct()
+
+        context = {}
+        context['form'] = form
+        context['search_term'] = searchWord
+        context['object_list'] = post_list
+
+        return render(self.request, self.template_name, context)
 
 
 
