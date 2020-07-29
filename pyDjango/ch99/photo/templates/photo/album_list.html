@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}album_list.html{% endblock %}
+
+<!-- {% block extra-style %}
+{% endblock %} -->
+
+{% block content %}
+
+    {% for item in object_list %} <!-- object_list는 AlbumLV 클래스형 뷰에서 넘겨주는 컨텍스트 변수로 Album리스트가 담겨있음-->
+    <div class="mt-5">
+        <a class="h2" href="{% url 'photo:album_detail' item.id %}">{{ item.name }}</a>&emsp; <!--ex) /photo/album/99/-->
+        <span class="font-italic h5">>{{ item.description }}</span>
+    </div>
+
+    <hr style="margin: 0 0 20px 0;">
+
+    <div class="row">
+        {% for photo in item.photo_set.all|slice:":5" %} <!-- python문법과 같음. 0~4까지 가져옴-->
+        <div class="ml-5">
+            <div class="thumbnail">
+                <a href="{{ photo.get_absolute_url }}">
+                    <img src="{{ photo.image.thumb_url }}" style="width: 100%;">
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}
