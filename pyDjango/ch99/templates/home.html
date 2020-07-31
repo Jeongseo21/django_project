@@ -12,9 +12,10 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: auto;
-        height: 500px;
-        border-top: 10px solid;
-        border-bottom: 10px solid;
+        background-color: #D6D6D6;
+        height: 700px;
+        /* border-top: 10px solid;
+        border-bottom: 10px solid; */
         padding: 20px 0 0 20px;
     }
     .title{
@@ -24,7 +25,7 @@
     .powered{
         position: relative;
         top: 77%;
-        color: #cc0;
+        color: dimgray;
         font-style: italic;
     }
 </style>
@@ -32,12 +33,12 @@
 
 {% block content %}
 <div class="home-image">
-    <h2 class="title">han jeongseo-Django Web Project</h2>
-    <h4 class="powered"><i class="fas fa-arrow-circle-right"></i>django and bootstrap</h4>
+    <h2 class="title">Jeongseo-Django Web Project</h2>
+    <h4 class="powered"><i class="fas fa-arrow-circle-right"></i>먹방짤저장소 upgrade version</h4>
 </div>
-<hr style="margin: 10px 0;">
 
-<div class="row text-center">
+
+<!-- <div class="row text-center">
     <div class="col-sm-6">
         <h3>Bookmark App</h3>
         <p>
@@ -52,11 +53,11 @@
             Thank you.
         </p>
     </div>
-</div>
+</div> -->
 {% endblock %}
 
 {% block footer %}
-<footer class="fixed-bottom bg-info">
+<footer class="fixed-bottom bg-secondary">
     <div class="text-white fornt-italic text-right mr-5">Copyright &copy; 2020 DjangoProject by HanJeonseo</div>
 </footer>
 {% endblock %}

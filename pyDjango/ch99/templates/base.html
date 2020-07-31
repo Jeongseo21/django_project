@@ -21,11 +21,9 @@
         crossorigin="anonymous"></script>
 
     <style>
-        body{
-            padding-top:90px;
-            padding-left: 20px;
-            padding-left: 20px;
-            padding-bottom: 15px;
+        
+        .box{
+            margin-top: 50px;
         }
     </style>
     {% block extra-style %}{% endblock %}
@@ -33,59 +31,63 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">Jeongseo-Django Web Project</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item mx-1 btn btn-primary">
-                    <a class="nav-link text-white" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item mx-1 btn btn-primary">
-                    <a class="nav-link text-white" href="{% url 'bookmark:index' %}">Bookmark</a></li>
-                <li class="nav-item mx-1 btn btn-primary">
-                    <a class="nav-link text-white" href="{% url 'blog:index' %}">Blog</a></li>
-                <li class="nav-item mx-1 btn btn-primary">
-                    <a class="nav-link text-white" href="{% url 'photo:index' %}">Photo</a></li>
-                <li class="nav-item dropdown mx-1 btn btn-primary">
-                    <a class="nav-link dropdown-toggle text-white" href="#"
-                        data-toggle="dropdown">Util</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
-                        <a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a>
-                        <a class="dropdown-item" href="{% url 'blog:search' %}">Search</a>
-                    </div>
-                </li>
-            </ul>
-            <!-- <form class="form-inline my-2" action="" method="post">{% csrf_token %}
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search_word">
-            </form> -->
-
-            <ul class="navbar-nav ml-5 mr-5">
-                <li class="nav-item dropdown mx-1 btn btn-primary">
-                    {% if user.is_active %}
-                    <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
-                        <i class="fas fa-user"></i>&ensp;{% firstof user.get_short_name user.get_username %}&ensp;
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'loggout' %}">Logout</a>
-                        <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
-                    </div>
-                    {% else %}
-                    <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
-                        <i class="fas fa-user"></i>&ensp;Anonymous&ensp;
-                    </a>
-                    <div>
-                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                    </div>
-                    {% endif %}
-                </li>
-            </ul>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">Jeongseo-Django Web Project</span>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active mx-1">
+              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item mx-1">
+              <a class="nav-link" href="{% url 'blog:index' %}">Blog</a>
+            </li>
+            <li class="nav-item mx-1">
+              <a class="nav-link" href="{% url 'photo:index' %}">Photo</a>
+            </li>
+            <li class="nav-item mx-1">
+                <a class="nav-link" href="{% url 'bookmark:index' %}">Portfolio</a>
+            </li>
+            <li class="nav-item mx-1">
+              <a class="nav-link" href="https://www.youtube.com" target="_blank">Youtube</a>
+            </li>
+            <li class="nav-item mx-1 dropdown">
+                <a class="nav-link dropdown-toggle" href="#"
+                    data-toggle="dropdown">Util</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+                    <a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a>
+                    <a class="dropdown-item" href="{% url 'blog:search' %}">Search</a>
+                </div>
+            </li>
+            
+          </ul>
+          <ul class="navbar-nav" style="margin-right: 70px;">
+            <li class="nav-item dropdown mx-1">
+                {% if user.is_active %}
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    <i class="fas fa-user"></i>&ensp;{% firstof user.get_short_name user.get_username %}
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
+                </div>
+                {% else %}
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    <i class="fas fa-user"></i>&ensp;Anonymous&ensp;
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                    <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                </div>
+                {% endif %}
+            </li>
+        </ul>
+        </div>
+      </nav>  
         </div>
     </nav>
 
